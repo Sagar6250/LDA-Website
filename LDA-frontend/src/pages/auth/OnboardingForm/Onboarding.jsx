@@ -102,7 +102,7 @@ const Onboarding = () => {
                                     Back
                                 </Button>
                             )}
-                            <Button type="submit">
+                            <Button type="button" onClick={next}>
                                 {isLastStep ? "Finish" : "Next"}
                             </Button>
                         </Box>
