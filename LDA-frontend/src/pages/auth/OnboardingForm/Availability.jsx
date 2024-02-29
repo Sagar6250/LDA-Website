@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import {Typography,Checkbox,FormGroup,FormControlLabel} from "@mui/material";
+import {Typography,Checkbox,FormGroup,FormControlLabel,Select,MenuItem,Box} from "@mui/material";
 
 const Availability = () => {
     const [selectedDays, setSelectedDays] = useState([]);
+    const [preferredHours, setPreferredHours] = useState('');
     const handleCheckboxChange = (event) => {
         const { value, checked } = event.target;
         if (checked) {
@@ -11,6 +12,10 @@ const Availability = () => {
             setSelectedDays(selectedDays.filter((day) => day !== value));
         }
 };
+const handlePreferredHoursChange = (event) => {
+    setPreferredHours(event.target.value);
+};
+
 return(
     <div>
             <Typography variant="h5" align="center" gutterBottom>
@@ -46,8 +51,25 @@ return(
                     label="Sunday"
                 />
             </FormGroup>
+            <Box mt={2}>
+                <Typography variant="body1" gutterBottom>
+                    Preferred Working Hours for the Week:
+                </Typography>
+                <Select
+                    value={preferredHours}
+                    onChange={handlePreferredHoursChange}
+                    fullWidth
+                >
+                    <MenuItem value="9am-5pm">9am-5pm</MenuItem>
+                    <MenuItem value="10am-6pm">10am-6pm</MenuItem>
+                    <MenuItem value="Flexible">Flexible</MenuItem>
+                </Select>
+            </Box>
             <div>
                 Selected days: {selectedDays.join(', ')}
+            </div>
+            <div>
+            Preferred Working Hours for the Week: {preferredHours}
             </div>
         </div>
    )
