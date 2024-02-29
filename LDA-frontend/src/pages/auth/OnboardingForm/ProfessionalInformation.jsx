@@ -1,5 +1,7 @@
+import { FormLabel, TextField } from "@mui/material";
+
 const ProfessionalInformation = () => {
-    return <div>ProfessionalInformation</div>;
+    return <></>;
 };
 
 export default ProfessionalInformation;

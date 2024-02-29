@@ -1,35 +1,19 @@
 import React from "react";
 import {
     Drawer,
-    List,
-    ListItem,
-    Link,
     Button,
-    Divider,
-    ListItemText,
-    ListItemButton,
     Typography,
-    Toolbar,
-    Container,
     Box,
     Stepper,
     Step,
     StepLabel,
-    FormControl,
 } from "@mui/material";
-import { Route, Routes, NavLink, Outlet } from "react-router-dom";
+// import { Route, Routes, NavLink, Outlet } from "react-router-dom";
 import { useOnboardingForm } from "../../../context/useOnboardingForm";
 import PersonalInformation from "./PersonalInformation";
 import ProfessionalInformation from "./ProfessionalInformation";
 import Availability from "./Availability";
 import VehicleInformation from "./VehicleInformation";
-
-const steps = [
-    "Personal Information",
-    "Professional Information",
-    "Avialability",
-    "Vehicle Information",
-];
 
 const Onboarding = () => {
     //Mobile View
@@ -42,16 +26,28 @@ const Onboarding = () => {
     //Stepper
     const { steps, activeStep, step, prev, next, isFirstStep, isLastStep } =
         useOnboardingForm([
-            <PersonalInformation label={"Personal Information"} key={0} />,
-            <ProfessionalInformation
-                label={"Professional Information"}
-                key={1}
-            />,
-            <Availability label={"Avialability"} key={2} />,
-            <VehicleInformation label={"Vehicle Information"} key={3} />,
+            {
+                element: <PersonalInformation key={0} />,
+                label: "Personal Information",
+            },
+            {
+                element: <ProfessionalInformation key={1} />,
+                label: "Professional Information",
+            },
+            { element: <Availability key={2} />, label: "Avialability" },
+            {
+                element: <VehicleInformation key={3} />,
+                label: "Vehicle Information",
+            },
         ]);
 
+    function handleSubmit(event) {
+        event.preventDefault();
+        next();
+    }
+
     return (
+        // <Container maxWidth="xl" disableGutters sx={{ mt: "7rem" }}>
         <Box sx={{ display: "flex" }}>
             <Drawer
                 variant="permanent"
@@ -70,35 +66,40 @@ const Onboarding = () => {
                         <Step key={step}>
                             <StepLabel
                                 optional={
-                                    index === 3 ? (
+                                    index === steps.length - 1 ? (
                                         <Typography variant="caption">
                                             Last step
                                         </Typography>
                                     ) : null
                                 }
                             >
-                                {step}
+                                {step.label}
                             </StepLabel>
                         </Step>
                     ))}
                 </Stepper>
             </Drawer>
-            <Box>
+            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 <Box>
-                    <FormControl>{step}</FormControl>
-                </Box>
-                <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                    {!isFirstStep && (
-                        <Button onClick={prev} type="button">
-                            Back
-                        </Button>
-                    )}
-                    <Button onClick={next}>
-                        {isLastStep ? "Finish" : "Next"}
-                    </Button>
+                    <form onSubmit={handleSubmit}>
+                        {step.element}
+                        <Box
+                            sx={{ display: "flex", justifyContent: "flex-end" }}
+                        >
+                            {!isFirstStep && (
+                                <Button onClick={prev} type="button">
+                                    Back
+                                </Button>
+                            )}
+                            <Button type="submit">
+                                {isLastStep ? "Finish" : "Next"}
+                            </Button>
+                        </Box>
+                    </form>
                 </Box>
             </Box>
         </Box>
+        // </Container>
     );
 };
 
