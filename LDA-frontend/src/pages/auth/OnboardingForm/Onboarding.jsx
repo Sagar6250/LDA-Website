@@ -52,16 +52,27 @@ const Onboarding = () => {
             <Drawer
                 variant="permanent"
                 sx={{
-                    minWidth: "16rem",
+                    minWidth: "40%",
                     flexShrink: 0,
                     "& .MuiDrawer-paper": {
+                        justifyContent: "center",
+                        alignItems: "center",
                         p: "2rem",
-                        minWidth: "16rem",
-                        // boxSizing: "border-box",
+                        minWidth: "40%",
+                        boxSizing: "border-box",
+                        border: "0",
                     },
                 }}
             >
-                <Stepper activeStep={activeStep} orientation="vertical">
+                <Stepper
+                    activeStep={activeStep}
+                    orientation="vertical"
+                    sx={{
+                        "& .MuiStepConnector-line": {
+                            minHeight: "40px",
+                        },
+                    }}
+                >
                     {steps.map((step, index) => (
                         <Step key={step}>
                             <StepLabel
