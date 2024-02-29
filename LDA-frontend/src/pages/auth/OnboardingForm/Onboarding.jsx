@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Drawer,
     Button,
@@ -15,7 +15,32 @@ import ProfessionalInformation from "./ProfessionalInformation";
 import Availability from "./Availability";
 import VehicleInformation from "./VehicleInformation";
 
+const INITIAL_DATA = {
+    fullName: "",
+    phoneNumber: "",
+    emailAddress: "",
+    dateOfBirth: "",
+    address: "",
+    city: "",
+    state: "",
+    zipcode: "",
+    country: "",
+    previousExperience: false,
+    experienceDetails: "",
+    weeksAvailable: 0,
+    workingHours: 0,
+    vehicleType: "",
+    vehicleRegistration: "",
+};
+
 const Onboarding = () => {
+    const [data, setData] = useState(INITIAL_DATA);
+    function updateFields(fields) {
+        setData((prev) => {
+            return { ...prev, ...fields };
+        });
+    }
+    console.log(data);
     //Mobile View
     const [open, setOpen] = React.useState(false);
 
@@ -27,16 +52,43 @@ const Onboarding = () => {
     const { steps, activeStep, step, prev, next, isFirstStep, isLastStep } =
         useOnboardingForm([
             {
-                element: <PersonalInformation key={0} />,
+                element: (
+                    <PersonalInformation
+                        key={0}
+                        {...data}
+                        updateFields={updateFields}
+                    />
+                ),
                 label: "Personal Information",
             },
             {
-                element: <ProfessionalInformation key={1} />,
+                element: (
+                    <ProfessionalInformation
+                        key={1}
+                        {...data}
+                        updateFields={updateFields}
+                    />
+                ),
                 label: "Professional Information",
             },
-            { element: <Availability key={2} />, label: "Avialability" },
             {
-                element: <VehicleInformation key={3} />,
+                element: (
+                    <Availability
+                        key={2}
+                        {...data}
+                        updateFields={updateFields}
+                    />
+                ),
+                label: "Availability",
+            },
+            {
+                element: (
+                    <VehicleInformation
+                        key={3}
+                        {...data}
+                        updateFields={updateFields}
+                    />
+                ),
                 label: "Vehicle Information",
             },
         ]);

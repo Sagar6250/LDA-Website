@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { Container, Grid } from "@mui/material";
 
 const FormWrapper = ({ title, children }) => {

@@ -1,7 +1,18 @@
 import { Grid, TextField } from "@mui/material";
 import FormWrapper from "../../../layout/FormWrapper";
 
-const PersonalInformation = () => {
+const PersonalInformation = ({
+    fullName,
+    phoneNumber,
+    emailAddress,
+    dateOfBirth,
+    address,
+    city,
+    state,
+    zipcode,
+    country,
+    updateFields,
+}) => {
     return (
         <FormWrapper title={"Personal Information"}>
             <Grid item xs={16}>
@@ -9,6 +20,8 @@ const PersonalInformation = () => {
                     type="text"
                     id="full-name"
                     label="Full Name"
+                    value={fullName}
+                    onChange={(e) => updateFields({ fullName: e.target.value })}
                     required
                     fullWidth
                     placeholder="Type your full name here"
@@ -20,6 +33,10 @@ const PersonalInformation = () => {
                     id="contact-number"
                     label="Contact Number"
                     required
+                    value={phoneNumber}
+                    onChange={(e) =>
+                        updateFields({ phoneNumber: e.target.value })
+                    }
                     // placeholder="Enter your phone number here"
                     fullWidth
                     variant="outlined"
@@ -30,6 +47,10 @@ const PersonalInformation = () => {
                     type="email"
                     label="Email Address"
                     id="email-address"
+                    value={emailAddress}
+                    onChange={(e) =>
+                        updateFields({ emailAddress: e.target.value })
+                    }
                     // placeholder="Enter your email address here"
                     fullWidth
                     required
@@ -42,6 +63,10 @@ const PersonalInformation = () => {
                     label="Date of Birth"
                     fullWidth
                     required
+                    value={dateOfBirth}
+                    onChange={(e) =>
+                        updateFields({ dateOfBirth: e.target.value })
+                    }
                     InputLabelProps={{ shrink: true }}
                     id="date-of-birth"
                     variant="outlined"
@@ -52,6 +77,8 @@ const PersonalInformation = () => {
                     id="address"
                     fullWidth
                     required
+                    value={address}
+                    onChange={(e) => updateFields({ address: e.target.value })}
                     label="Address"
                     placeholder="Enter the address here"
                     variant="outlined"
@@ -62,6 +89,8 @@ const PersonalInformation = () => {
                     id="city"
                     label="City"
                     fullWidth
+                    value={city}
+                    onChange={(e) => updateFields({ city: e.target.value })}
                     required
                     // placeholder=""
                     variant="outlined"
@@ -71,6 +100,8 @@ const PersonalInformation = () => {
                 <TextField
                     id="state"
                     label="State"
+                    value={state}
+                    onChange={(e) => updateFields({ state: e.target.value })}
                     fullWidth
                     required
                     // placeholder=""
@@ -82,6 +113,8 @@ const PersonalInformation = () => {
                     id="zip-code"
                     label="Zip Code"
                     variant="outlined"
+                    value={zipcode}
+                    onChange={(e) => updateFields({ zipcode: e.target.value })}
                     fullWidth
                     required
                 />
@@ -91,6 +124,8 @@ const PersonalInformation = () => {
                     id="country"
                     label="Country"
                     variant="outlined"
+                    value={country}
+                    onChange={(e) => updateFields({ country: e.target.value })}
                     fullWidth
                     required
                 />

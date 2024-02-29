@@ -17,6 +17,8 @@ module.exports = {
             "warn",
             { allowConstantExport: true },
         ],
-        "no-unused-vars": "warn",
+        "react/jsx-no-target-blank": ["warn"],
+        "no-unused-vars": ["warn"],
+        "react/prop-types": "off",
     },
 };
