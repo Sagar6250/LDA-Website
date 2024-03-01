@@ -7,6 +7,7 @@ import {
     Stepper,
     Step,
     StepLabel,
+    Paper,
 } from "@mui/material";
 // import { Route, Routes, NavLink, Outlet } from "react-router-dom";
 import { useOnboardingForm } from "../../../context/useOnboardingForm";
@@ -142,19 +143,38 @@ const Onboarding = () => {
                     ))}
                 </Stepper>
             </Drawer>
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                <Box>
+            <Box
+                component={Paper}
+                elevation={0}
+                sx={{ flexGrow: 1, height: "90vh" }}
+            >
+                <Box
+                    sx={{
+                        display: "flex",
+                        position: "relative",
+                        height: "100%",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                    }}
+                >
                     <form onSubmit={handleSubmit}>
                         {step.element}
                         <Box
-                            sx={{ display: "flex", justifyContent: "flex-end" }}
+                            sx={{
+                                display: "flex",
+                                justifyContent: "flex-end",
+                                position: "absolute",
+                                right: 0,
+                                bottom: 0,
+                            }}
                         >
                             {!isFirstStep && (
                                 <Button onClick={prev} type="button">
                                     Back
                                 </Button>
                             )}
-                            <Button type="submit">
+                            <Button type="button" onClick={next}>
+                                {/*type="submit"*/}
                                 {isLastStep ? "Finish" : "Next"}
                             </Button>
                         </Box>

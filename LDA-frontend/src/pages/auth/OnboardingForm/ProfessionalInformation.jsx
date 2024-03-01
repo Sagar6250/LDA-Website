@@ -1,81 +1,73 @@
-import { FormLabel, TextField } from "@mui/material";
-import React from "react";
+import { FormLabel, Grid, TextField } from "@mui/material";
+import { useState } from "react";
 import FormWrapper from "../../../layout/FormWrapper";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import Box from "@mui/material/Box";
 
 const ProfessionalInformation = () => {
-    const [value, setValue] = React.useState();
-    let text;
-    const handleChange = (event) => {
-        setValue(event.target.value);
-    };
-    if (value === "yes") {
-        text = (
-            <div>
-                <Box
-                    component="form"
-                    sx={{
-                        "& .MuiTextField-root": { m: 2, width: "25ch" },
-                    }}
-                    noValidate
-                    autoComplete="off"
-                >
-                    <TextField
-                        required
-                        id="outlined-textarea"
-                        label="Company Name"
-                        placeholder=""
-                        variant="standard"
-                    />
-                    <br />
-                    <br />
-                    <TextField
-                        required
-                        id="outlined-textarea"
-                        label="Area of expertise"
-                        placeholder=""
-                        variant="standard"
-                    />
-                    <br />
-                    <br />
-                    <TextField
-                        id="standard-number"
-                        label="Number of years worked"
-                        type="number"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        variant="standard"
-                    />
-                    <p>* required</p>
-                </Box>
-            </div>
-        );
-    }
-    return (
-        <FormControl>
-            <FormLabel id="demo-controlled-radio-buttons-group">
-                Do you have any previous work experience?
-            </FormLabel>
-            <RadioGroup
-                aria-labelledby="demo-controlled-radio-buttons-group"
-                name="controlled-radio-buttons-group"
-                value={value}
-                onChange={handleChange}
-            >
-                <FormControlLabel value="yes" control={<Radio />} label="yes" />
-                <FormControlLabel value="no" control={<Radio />} label="no" />
-            </RadioGroup>
+    const [value, setValue] = useState(null);
 
-            <div>
-                <h1>If Yes, provide us the details</h1>
-                {text}
-            </div>
-        </FormControl>
+    return (
+        <FormWrapper title={"Professional Information"}>
+            <Grid item xs={16}>
+                <FormLabel>Do you have any previous work experience?</FormLabel>
+            </Grid>
+            <Grid item xs={16}>
+                <RadioGroup
+                    value={value}
+                    onChange={(e) => setValue(e.target.value)}
+                >
+                    <FormControlLabel
+                        value={"true"}
+                        control={<Radio />}
+                        label="Yes"
+                    />
+                    <FormControlLabel
+                        value={"false"}
+                        control={<Radio />}
+                        label="No"
+                    />
+                </RadioGroup>
+            </Grid>
+            {value === "true" && (
+                <Grid container spacing={2}>
+                    <Grid item xs={16}>
+                        <FormLabel>If Yes, provide us the details</FormLabel>
+                    </Grid>
+                    <Grid item xs={16}>
+                        <TextField
+                            required
+                            id="outlined-textarea"
+                            label="Company Name"
+                            placeholder=""
+                            fullWidth
+                            variant="outlined"
+                        />
+                    </Grid>
+                    <Grid item xs={16}>
+                        <TextField
+                            required
+                            id="outlined-textarea"
+                            label="Area of expertise"
+                            placeholder=""
+                            fullWidth
+                            variant="outlined"
+                        />
+                    </Grid>
+                    <Grid item xs={16}>
+                        <TextField
+                            id="standard-number"
+                            label="Number of years worked"
+                            type="number"
+                            fullWidth
+                            required
+                            variant="outlined"
+                        />
+                    </Grid>
+                </Grid>
+            )}
+        </FormWrapper>
     );
 };
 
