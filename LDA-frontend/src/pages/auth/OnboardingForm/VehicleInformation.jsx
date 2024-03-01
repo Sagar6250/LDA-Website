@@ -40,19 +40,23 @@ const VehicleInformation = ({
                     </Select>
                 </FormControl>
             </Grid>
-            <Grid item xs={16}>
-                <TextField
-                    id="Vehicle Registration Number"
-                    label="Vehicle Registration Number"
-                    required
-                    value={vehicleRegistration}
-                    onChange={(e) =>
-                        updateFields({ vehicleRegistration: e.target.value })
-                    }
-                    fullWidth
-                    variant="outlined"
-                />
-            </Grid>
+            {!(vehicleType === "None" || vehicleType === "") && (
+                <Grid item xs={16}>
+                    <TextField
+                        id="Vehicle Registration Number"
+                        label="Vehicle Registration Number"
+                        required
+                        value={vehicleRegistration}
+                        onChange={(e) =>
+                            updateFields({
+                                vehicleRegistration: e.target.value,
+                            })
+                        }
+                        fullWidth
+                        variant="outlined"
+                    />
+                </Grid>
+            )}
         </FormWrapper>
     );
 };

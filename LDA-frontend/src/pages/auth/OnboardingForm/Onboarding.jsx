@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import {
     Drawer,
     Button,
@@ -15,6 +15,7 @@ import PersonalInformation from "./PersonalInformation";
 import ProfessionalInformation from "./ProfessionalInformation";
 import Availability from "./Availability";
 import VehicleInformation from "./VehicleInformation";
+import { useNavigate } from "react-router-dom";
 
 const INITIAL_DATA = {
     fullName: "",
@@ -29,7 +30,7 @@ const INITIAL_DATA = {
     previousExperience: false,
     companyName: "",
     areaOfExpertise: "",
-    yearsWorked: 0,
+    yearsWorked: null,
     daysAvailable: [],
     workingHours: "",
     vehicleType: "",
@@ -37,14 +38,21 @@ const INITIAL_DATA = {
 };
 
 const Onboarding = () => {
-    const [data, setData] = useState(INITIAL_DATA);
+    window.onbeforeunload = function (e) {
+        localStorage.clear();
+    };
+
+    const [data, setData] = useState(
+        localStorage.getItem("formData")
+            ? JSON.parse(localStorage.getItem("formData"))
+            : INITIAL_DATA
+    );
     function updateFields(fields) {
         setData((prev) => {
             return { ...prev, ...fields };
         });
     }
-    console.log(data);
-
+    console.log(JSON.parse(localStorage.getItem("formData")));
     //Mobile View
     // const [open, setOpen] = React.useState(false);
 
@@ -101,11 +109,19 @@ const Onboarding = () => {
         },
     ]);
 
+    const navigate = useNavigate();
+
     function handleSubmit(event) {
         event.preventDefault();
         if (!isLastStep) return next();
-        alert("Success");
+        localStorage.setItem("formData", JSON.stringify(data));
+        navigate("/onboarding/confirmation", { state: data });
     }
+
+    // useEffect(() => {
+    //     if (localStorage.getItem("formData"))
+    //         setData(localStorage.getItem("formData"));
+    // }, []);
 
     return (
         // <Container maxWidth="xl" disableGutters sx={{ mt: "7rem" }}>
@@ -137,7 +153,7 @@ const Onboarding = () => {
                     {steps.map((step, index) => (
                         <Step key={step}>
                             <StepLabel
-                                onClick={() => goto(index)}
+                                // onClick={() => goto(index)}
                                 optional={
                                     index === steps.length - 1 ? (
                                         <Typography variant="caption">
