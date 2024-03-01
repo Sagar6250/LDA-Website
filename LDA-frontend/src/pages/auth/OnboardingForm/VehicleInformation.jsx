@@ -1,71 +1,60 @@
-import { Grid, Select, OutlinedInput, TextField, MenuItem } from "@mui/material";
+import {
+    Grid,
+    Select,
+    // OutlinedInput,
+    TextField,
+    MenuItem,
+    InputLabel,
+    FormControl,
+} from "@mui/material";
 import FormWrapper from "../../../layout/FormWrapper";
-import * as React from 'react';
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-const vehicleTypes = [
-    'Car',
-    'Truck',
-    'Bus', 
-    'Auto', 
-    'Motorcycle',
-    'None'
-  ];
-const VehicleInformation = () => {
-    
-        const [vehicleType, setVehicleType] = React.useState([]);
-      
-        const handleChange = (event) => {
-          const {
-            target: { value },
-          } = event;
-          setVehicleType(
-            typeof value === 'string' ? value.split(',') : value,
-          );
-        };
+const vehicleTypes = ["Car", "Truck", "Bus", "Auto", "Motorcycle", "None"];
 
+const VehicleInformation = ({
+    vehicleType,
+    vehicleRegistration,
+    updateFields,
+}) => {
     return (
-        <FormWrapper title={"VEHICLE INFORMATION"}>
+        <FormWrapper title={"Vehicle Information"}>
             <Grid item xs={16}>
-                <Select
-                labelId="vehicle-types-label"
-                id="vehicle-types"
-                single
-                value={vehicleType}
-                onChange={handleChange}
-                input={<OutlinedInput label="Vehicle Type" />}
-                renderValue={(selected) => selected.join(', ')}
-                MenuProps={MenuProps}
-                >
-                {vehicleTypes.map((vehicle) => (
-                <MenuItem key={vehicle} value={vehicle}>
-                    {vehicle}
-            </MenuItem>
-          ))}
-                </Select>
+                <FormControl required fullWidth>
+                    <InputLabel id="vehicle-type">Vehicle Type</InputLabel>
+                    <Select
+                        labelId="vehicle-type"
+                        label="Vehicle Type"
+                        value={vehicleType}
+                        onChange={(e) =>
+                            updateFields({ vehicleType: e.target.value })
+                        }
+                        // multiple
+                        // input={<OutlinedInput label="Vehicle Type" />}
+                        // renderValue={(selected) => selected.join(", ")}
+                    >
+                        {vehicleTypes.map((vehicle) => (
+                            <MenuItem key={vehicle} value={vehicle}>
+                                {vehicle}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
             </Grid>
             <Grid item xs={16}>
                 <TextField
                     id="Vehicle Registration Number"
                     label="Vehicle Registration Number"
                     required
-                    // placeholder="Enter your phone number here"
+                    value={vehicleRegistration}
+                    onChange={(e) =>
+                        updateFields({ vehicleRegistration: e.target.value })
+                    }
                     fullWidth
                     variant="outlined"
                 />
             </Grid>
-            </FormWrapper>
-    ); 
+        </FormWrapper>
+    );
 };
 
 export default VehicleInformation;
-

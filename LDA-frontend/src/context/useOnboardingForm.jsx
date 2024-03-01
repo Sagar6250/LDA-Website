@@ -16,8 +16,8 @@ export function useOnboardingForm(steps) {
         });
     };
 
-    const reset = () => {
-        setActiveStep(0);
+    const goto = (index) => {
+        setActiveStep(index);
     };
 
     return {
@@ -26,7 +26,7 @@ export function useOnboardingForm(steps) {
         steps,
         next,
         prev,
-        reset,
+        goto,
         isFirstStep: activeStep === 0,
         isLastStep: activeStep === steps.length - 1,
     };

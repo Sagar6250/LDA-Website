@@ -27,9 +27,11 @@ const INITIAL_DATA = {
     zipcode: "",
     country: "",
     previousExperience: false,
-    experienceDetails: "",
-    weeksAvailable: 0,
-    workingHours: 0,
+    companyName: "",
+    areaOfExpertise: "",
+    yearsWorked: 0,
+    daysAvailable: [],
+    workingHours: "",
     vehicleType: "",
     vehicleRegistration: "",
 };
@@ -42,61 +44,67 @@ const Onboarding = () => {
         });
     }
     console.log(data);
-    //Mobile View
-    const [open, setOpen] = React.useState(false);
 
-    const toggleDrawer = (newOpen) => () => {
-        setOpen(newOpen);
-    };
+    //Mobile View
+    // const [open, setOpen] = React.useState(false);
+
+    // const toggleDrawer = (newOpen) => () => {
+    //     setOpen(newOpen);
+    // };
 
     //Stepper
-    const { steps, activeStep, step, prev, next, isFirstStep, isLastStep } =
-        useOnboardingForm([
-            {
-                element: (
-                    <PersonalInformation
-                        key={0}
-                        {...data}
-                        updateFields={updateFields}
-                    />
-                ),
-                label: "Personal Information",
-            },
-            {
-                element: (
-                    <ProfessionalInformation
-                        key={1}
-                        {...data}
-                        updateFields={updateFields}
-                    />
-                ),
-                label: "Professional Information",
-            },
-            {
-                element: (
-                    <Availability
-                        key={2}
-                        {...data}
-                        updateFields={updateFields}
-                    />
-                ),
-                label: "Availability",
-            },
-            {
-                element: (
-                    <VehicleInformation
-                        key={3}
-                        {...data}
-                        updateFields={updateFields}
-                    />
-                ),
-                label: "Vehicle Information",
-            },
-        ]);
+    const {
+        steps,
+        activeStep,
+        step,
+        prev,
+        next,
+        goto,
+        isFirstStep,
+        isLastStep,
+    } = useOnboardingForm([
+        {
+            element: (
+                <PersonalInformation
+                    key={0}
+                    {...data}
+                    updateFields={updateFields}
+                />
+            ),
+            label: "Personal Information",
+        },
+        {
+            element: (
+                <ProfessionalInformation
+                    key={1}
+                    {...data}
+                    updateFields={updateFields}
+                />
+            ),
+            label: "Professional Information",
+        },
+        {
+            element: (
+                <Availability key={2} {...data} updateFields={updateFields} />
+            ),
+            label: "Availability",
+        },
+        {
+            element: (
+                <VehicleInformation
+                    key={3}
+                    {...data}
+                    updateFields={updateFields}
+                />
+            ),
+            label: "Vehicle Information",
+        },
+    ]);
 
     function handleSubmit(event) {
         event.preventDefault();
-        next();
+        if (!isLastStep) return next();
+        alert("Success");
     }
 
     return (
@@ -129,6 +137,7 @@ const Onboarding = () => {
                     {steps.map((step, index) => (
                         <Step key={step}>
                             <StepLabel
+                                onClick={() => goto(index)}
                                 optional={
                                     index === steps.length - 1 ? (
                                         <Typography variant="caption">
@@ -173,8 +182,8 @@ const Onboarding = () => {
                                     Back
                                 </Button>
                             )}
-                            <Button type="button" onClick={next}>
-                                {/*type="submit"*/}
+                            <Button type="submit">
+                                {/*type="button" onClick={next}*/}
                                 {isLastStep ? "Finish" : "Next"}
                             </Button>
                         </Box>

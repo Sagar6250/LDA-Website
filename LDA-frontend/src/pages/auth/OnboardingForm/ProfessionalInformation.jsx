@@ -1,13 +1,16 @@
 import { FormLabel, Grid, TextField } from "@mui/material";
-import { useState } from "react";
 import FormWrapper from "../../../layout/FormWrapper";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
-const ProfessionalInformation = () => {
-    const [value, setValue] = useState(null);
-
+const ProfessionalInformation = ({
+    previousExperience,
+    companyName,
+    areaOfExpertise,
+    yearsWorked,
+    updateFields,
+}) => {
     return (
         <FormWrapper title={"Professional Information"}>
             <Grid item xs={16}>
@@ -15,8 +18,12 @@ const ProfessionalInformation = () => {
             </Grid>
             <Grid item xs={16}>
                 <RadioGroup
-                    value={value}
-                    onChange={(e) => setValue(e.target.value)}
+                    value={previousExperience}
+                    onChange={(e) =>
+                        updateFields({
+                            previousExperience: e.target.value === "true",
+                        })
+                    }
                 >
                     <FormControlLabel
                         value={"true"}
@@ -30,7 +37,7 @@ const ProfessionalInformation = () => {
                     />
                 </RadioGroup>
             </Grid>
-            {value === "true" && (
+            {previousExperience ? (
                 <Grid container spacing={2}>
                     <Grid item xs={16}>
                         <FormLabel>If Yes, provide us the details</FormLabel>
@@ -38,9 +45,13 @@ const ProfessionalInformation = () => {
                     <Grid item xs={16}>
                         <TextField
                             required
-                            id="outlined-textarea"
                             label="Company Name"
-                            placeholder=""
+                            value={companyName}
+                            onChange={(e) =>
+                                updateFields({
+                                    companyName: e.target.value,
+                                })
+                            }
                             fullWidth
                             variant="outlined"
                         />
@@ -48,24 +59,35 @@ const ProfessionalInformation = () => {
                     <Grid item xs={16}>
                         <TextField
                             required
-                            id="outlined-textarea"
                             label="Area of expertise"
-                            placeholder=""
+                            value={areaOfExpertise}
+                            onChange={(e) =>
+                                updateFields({
+                                    areaOfExpertise: e.target.value,
+                                })
+                            }
                             fullWidth
                             variant="outlined"
                         />
                     </Grid>
                     <Grid item xs={16}>
                         <TextField
-                            id="standard-number"
                             label="Number of years worked"
                             type="number"
                             fullWidth
                             required
+                            value={yearsWorked}
+                            onChange={(e) =>
+                                updateFields({
+                                    yearsWorked: e.target.value,
+                                })
+                            }
                             variant="outlined"
                         />
                     </Grid>
                 </Grid>
+            ) : (
+                <></>
             )}
         </FormWrapper>
     );
