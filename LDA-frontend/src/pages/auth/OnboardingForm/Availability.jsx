@@ -6,8 +6,18 @@ import {
     MenuItem,
     FormLabel,
     Grid,
+    FormControl,
 } from "@mui/material";
 import FormWrapper from "../../../layout/FormWrapper";
+
+const daysOfWeek = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+];
 
 const Availability = ({ daysAvailable, workingHours, updateFields }) => {
     const handleCheckboxChange = (e) => {
@@ -16,7 +26,17 @@ const Availability = ({ daysAvailable, workingHours, updateFields }) => {
                 daysAvailable: [...daysAvailable, e.target.value],
             });
         } else {
-            daysAvailable.splice(daysAvailable.indexOf(e.target.value), 1);
+            updateFields({
+                daysAvailable: [
+                    ...daysAvailable.slice(
+                        0,
+                        daysAvailable.indexOf(e.target.value)
+                    ),
+                    ...daysAvailable.slice(
+                        daysAvailable.indexOf(e.target.value) + 1
+                    ),
+                ],
+            });
         }
     };
 
@@ -25,87 +45,37 @@ const Availability = ({ daysAvailable, workingHours, updateFields }) => {
             <Grid item xs={16}>
                 <FormLabel>Days of the week available for work:</FormLabel>
                 <FormGroup>
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                onChange={handleCheckboxChange}
-                                value="Monday"
-                            />
-                        }
-                        label="Monday"
-                    />
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                onChange={handleCheckboxChange}
-                                value="Tuesday"
-                            />
-                        }
-                        label="Tuesday"
-                    />
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                onChange={handleCheckboxChange}
-                                value="Wednesday"
-                            />
-                        }
-                        label="Wednesday"
-                    />
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                onChange={handleCheckboxChange}
-                                value="Thursday"
-                            />
-                        }
-                        label="Thursday"
-                    />
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                onChange={handleCheckboxChange}
-                                value="Friday"
-                            />
-                        }
-                        label="Friday"
-                    />
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                onChange={handleCheckboxChange}
-                                value="Saturday"
-                            />
-                        }
-                        label="Saturday"
-                    />
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                onChange={handleCheckboxChange}
-                                value="Sunday"
-                            />
-                        }
-                        label="Sunday"
-                    />
+                    {daysOfWeek.map((day, index) => (
+                        <FormControlLabel
+                            key={index}
+                            control={
+                                <Checkbox
+                                    onChange={handleCheckboxChange}
+                                    value={day}
+                                    checked={daysAvailable.includes(day)}
+                                />
+                            }
+                            label={day}
+                        />
+                    ))}
                 </FormGroup>
             </Grid>
             <Grid item xs={16}>
                 <FormLabel>Preferred Working Hours for the Week:</FormLabel>
-                <Select
-                    value={workingHours}
-                    onChange={(e) =>
-                        updateFields({ workingHours: e.target.value })
-                    }
-                    fullWidth
-                >
-                    <MenuItem value={"9am-5pm"}>9am-5pm</MenuItem>
-                    <MenuItem value={"10am-6pm"}>10am-6pm</MenuItem>
-                    <MenuItem value={"Flexible"}>Flexible</MenuItem>
-                </Select>
+                <FormControl required fullWidth>
+                    <Select
+                        value={workingHours}
+                        onChange={(e) =>
+                            updateFields({ workingHours: e.target.value })
+                        }
+                        fullWidth
+                    >
+                        <MenuItem value={"9am-5pm"}>9am-5pm</MenuItem>
+                        <MenuItem value={"10am-6pm"}>10am-6pm</MenuItem>
+                        <MenuItem value={"Flexible"}>Flexible</MenuItem>
+                    </Select>
+                </FormControl>
             </Grid>
-            {/* <div>Selected days: {selectedDays.join(", ")}</div>
-            <div>Preferred Working Hours for the Week: {preferredHours}</div> */}
         </FormWrapper>
     );
 };

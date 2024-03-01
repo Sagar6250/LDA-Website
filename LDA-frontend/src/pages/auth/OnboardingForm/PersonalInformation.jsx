@@ -1,5 +1,31 @@
 import { Grid, TextField } from "@mui/material";
 import FormWrapper from "../../../layout/FormWrapper";
+import React from "react";
+import { IMaskInput } from "react-imask";
+import PropTypes from "prop-types";
+
+const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
+    const { onChange, ...other } = props;
+    return (
+        <IMaskInput
+            {...other}
+            mask="##########"
+            definitions={{
+                "#": /[0-9]/,
+            }}
+            inputRef={ref}
+            onAccept={(value) =>
+                onChange({ target: { name: props.name, value } })
+            }
+            overwrite
+        />
+    );
+});
+
+TextMaskCustom.propTypes = {
+    name: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+};
 
 const PersonalInformation = ({
     fullName,
@@ -33,6 +59,9 @@ const PersonalInformation = ({
                     id="contact-number"
                     label="Contact Number"
                     required
+                    InputProps={{
+                        inputComponent: TextMaskCustom,
+                    }}
                     value={phoneNumber}
                     onChange={(e) =>
                         updateFields({ phoneNumber: e.target.value })
