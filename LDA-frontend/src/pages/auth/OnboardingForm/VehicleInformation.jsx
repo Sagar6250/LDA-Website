@@ -25,6 +25,7 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
                 'A': /[A-Z]/,
                 '9': /[0-9]/
             }}
+            placeholder="FORMAT: AA 99 AA 9999"
             inputRef={ref}
             onAccept={(value) =>
                 onChange({ target: { name: props.name, value } })
