@@ -7,13 +7,12 @@ import {
     InputLabel,
     FormControl,
 } from "@mui/material";
-import FormWrapper from "../../../layout/FormWrapper";
+import FormWrapper from "../../../../layout/FormWrapper";
 import { IMaskInput } from "react-imask";
 import PropTypes from "prop-types";
 import React from "react";
 
 const vehicleTypes = ["Car", "Truck", "Bus", "Auto", "Motorcycle", "None"];
-
 
 const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
     const { onChange, ...other } = props;
@@ -22,8 +21,8 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
             {...other}
             mask="AA 99 AA 9999"
             definitions={{
-                'A': /[A-Z]/,
-                '9': /[0-9]/
+                A: /[A-Z]/,
+                9: /[0-9]/,
             }}
             placeholder="FORMAT: AA 99 AA 9999"
             inputRef={ref}

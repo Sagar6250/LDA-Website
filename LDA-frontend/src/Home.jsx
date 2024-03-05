@@ -1,8 +1,14 @@
-import React from "react";
-
+import { Box, Link } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
 const Home = () => {
-    return <div>Home</div>;
+    return (
+        <Box>
+            <Link component={NavLink} to="/onboarding">
+                Onboarding
+            </Link>
+        </Box>
+    );
 };
 
 export default Home;

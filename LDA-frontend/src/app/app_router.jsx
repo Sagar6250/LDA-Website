@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
-import Onboarding from "../pages/auth/OnboardingForm/Onboarding";
+import OBForm from "../pages/auth/OnboardingForm/OBForm";
 import Home from "../Home";
-import OnboardingConfirmation from "../pages/auth/OnboardingForm/OnboardingConfirmation";
+import OBConfirmation from "../pages/auth/OnboardingForm/OBConfirmation";
 
 const router = createBrowserRouter([
     {
@@ -10,11 +10,11 @@ const router = createBrowserRouter([
     },
     {
         path: "/onboarding",
-        element: <Onboarding />,
+        element: <OBForm />,
     },
     {
         path: "/onboarding/confirmation",
-        element: <OnboardingConfirmation />,
+        element: <OBConfirmation />,
     },
 ]);
 

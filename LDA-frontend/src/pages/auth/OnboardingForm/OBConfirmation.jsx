@@ -17,7 +17,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 //     "Vehicle Information",
 // ];
 
-const OnboardingConfirmation = () => {
+const OBConfirmation = () => {
     // const location = useLocation();
     // const data = location.state;
     const data = JSON.parse(localStorage.getItem("formData"));
@@ -47,4 +47,4 @@ const OnboardingConfirmation = () => {
     );
 };
 
-export default OnboardingConfirmation;
+export default OBConfirmation;

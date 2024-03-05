@@ -11,10 +11,10 @@ import {
 } from "@mui/material";
 // import { Route, Routes, NavLink, Outlet } from "react-router-dom";
 import { useOnboardingForm } from "../../../context/useOnboardingForm";
-import PersonalInformation from "./PersonalInformation";
-import ProfessionalInformation from "./ProfessionalInformation";
-import Availability from "./Availability";
-import VehicleInformation from "./VehicleInformation";
+import PersonalInformation from "./FormScreens/PersonalInformation";
+import ProfessionalInformation from "./FormScreens/ProfessionalInformation";
+import Availability from "./FormScreens/Availability";
+import VehicleInformation from "./FormScreens/VehicleInformation";
 import { useNavigate } from "react-router-dom";
 
 const INITIAL_DATA = {
@@ -37,7 +37,7 @@ const INITIAL_DATA = {
     vehicleRegistration: "",
 };
 
-const Onboarding = () => {
+const OBForm = () => {
     window.onbeforeunload = function (e) {
         localStorage.clear();
     };
@@ -67,7 +67,7 @@ const Onboarding = () => {
         step,
         prev,
         next,
-        goto,
+        // goto,
         isFirstStep,
         isLastStep,
     } = useOnboardingForm([
@@ -211,4 +211,4 @@ const Onboarding = () => {
     );
 };
 
-export default Onboarding;
+export default OBForm;
