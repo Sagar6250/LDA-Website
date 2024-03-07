@@ -1,9 +1,11 @@
-import { Container, Grid } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 
 const FormWrapper = ({ title, children }) => {
     return (
         <Container maxWidth="xs">
-            <h2>{title}</h2>
+            <Typography variant="h2" sx={{ mb: "1.5rem" }}>
+                {title}
+            </Typography>
             <Grid container spacing={2}>
                 {children}
             </Grid>

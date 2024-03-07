@@ -118,13 +118,7 @@ const OBForm = () => {
         navigate("/onboarding/confirmation", { state: data });
     }
 
-    // useEffect(() => {
-    //     if (localStorage.getItem("formData"))
-    //         setData(localStorage.getItem("formData"));
-    // }, []);
-
     return (
-        // <Container maxWidth="xl" disableGutters sx={{ mt: "7rem" }}>
         <Box sx={{ display: "flex" }}>
             <Drawer
                 variant="permanent"
@@ -168,11 +162,7 @@ const OBForm = () => {
                     ))}
                 </Stepper>
             </Drawer>
-            <Box
-                component={Paper}
-                elevation={0}
-                sx={{ flexGrow: 1, height: "90vh" }}
-            >
+            <Box sx={{ flexGrow: 1, height: "90vh" }}>
                 <Box
                     sx={{
                         display: "flex",
