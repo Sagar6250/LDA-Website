@@ -1,6 +1,7 @@
 import {
     Grid,
     Select,
+    // OutlinedInput,
     TextField,
     MenuItem,
     InputLabel,
@@ -11,7 +12,6 @@ import { IMaskInput } from "react-imask";
 import PropTypes from "prop-types";
 import React from "react";
 
-const desiredLength= 13;
 const vehicleTypes = ["Car", "Truck", "Bus", "Auto", "Motorcycle", "None"];
 
 
@@ -22,18 +22,13 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
             {...other}
             mask="AA 99 AA 9999"
             definitions={{
-<<<<<<< Updated upstream:LDA-frontend/src/pages/auth/OnboardingForm/VehicleInformation.jsx
                 'A': /[A-Z]/,
                 '9': /[0-9]/
-=======
-                A: /[A-Za-z]/,
-                9: /[0-9]/,
->>>>>>> Stashed changes:LDA-frontend/src/pages/auth/OnboardingForm/FormScreens/VehicleInformation.jsx
             }}
             inputRef={ref}
             onAccept={(value) =>
                 onChange({ target: { name: props.name, value } })
-                }
+            }
             overwrite
         />
     );
@@ -61,7 +56,9 @@ const VehicleInformation = ({
                         onChange={(e) =>
                             updateFields({ vehicleType: e.target.value })
                         }
-                        
+                        // multiple
+                        // input={<OutlinedInput label="Vehicle Type" />}
+                        // renderValue={(selected) => selected.join(", ")}
                     >
                         {vehicleTypes.map((vehicle) => (
                             <MenuItem key={vehicle} value={vehicle}>
@@ -80,15 +77,12 @@ const VehicleInformation = ({
                         InputProps={{
                             inputComponent: TextMaskCustom,
                         }}
-                        value={vehicleRegistration.toUpperCase()}
-                        onChange={(e) =>{
-                   
+                        value={vehicleRegistration}
+                        onChange={(e) =>
                             updateFields({
-                                vehicleRegistration: e.target.value.toUpperCase(),
-                            }); 
+                                vehicleRegistration: e.target.value,
+                            })
                         }
-                        }
-                        
                         fullWidth
                         variant="outlined"
                     />
