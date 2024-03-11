@@ -21,7 +21,7 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
             {...other}
             mask="AA 99 AA 9999"
             definitions={{
-                A: /[A-Z]/,
+                A: /[A-Za-z]/,
                 9: /[0-9]/,
             }}
             placeholder="FORMAT: AA 99 AA 9999"
@@ -77,10 +77,10 @@ const VehicleInformation = ({
                         InputProps={{
                             inputComponent: TextMaskCustom,
                         }}
-                        value={vehicleRegistration}
+                        value={vehicleRegistration.toUpperCase()}
                         onChange={(e) =>
                             updateFields({
-                                vehicleRegistration: e.target.value,
+                                vehicleRegistration: e.target.value.toUpperCase(),
                             })
                         }
                         fullWidth
