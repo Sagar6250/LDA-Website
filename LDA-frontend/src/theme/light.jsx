@@ -65,6 +65,34 @@ theme.palette = {
 
 theme.components = {
     ...theme.components,
+    MuiButton: {
+        styleOverrides: {
+            root: {
+                textTransform: "none",
+                boxShadow: "0px 0px 0px",
+                padding: "0.8rem 1.5rem",
+                borderRadius: "10px",
+                color: theme.typography.allVariants.color,
+            },
+            contained: {
+                backgroundColor: theme.palette.secondary.main,
+
+                "&:hover": {
+                    boxShadow: "0px 0px 0px",
+                    backgroundColor: theme.palette.primary.main,
+                },
+            },
+            text: {},
+            outlined: {
+                color: theme.palette.secondary.main,
+                outline: "3px solid" + theme.palette.secondary.main,
+                outlineOffset: "-3px",
+                "&:hover": {
+                    outline: "3px solid" + theme.palette.secondary.main,
+                },
+            },
+        },
+    },
     MuiTextField: {
         styleOverrides: {
             root: {

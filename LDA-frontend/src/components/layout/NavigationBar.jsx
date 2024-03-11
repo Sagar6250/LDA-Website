@@ -1,4 +1,4 @@
-import { AppBar, Avatar, Box, Button, Container, Toolbar } from "@mui/material";
+import { AppBar, Box, Button, Toolbar } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/Logo";
@@ -7,10 +7,12 @@ const pagesArr = [
     {
         title: "Sign-in",
         link: "/onboarding",
+        variant: "text",
     },
     {
-        title: "Contact",
+        title: "Contact Us",
         link: "/",
+        variant: "contained",
     },
 ];
 
@@ -40,6 +42,7 @@ const NavigationBar = () => {
                     {pagesArr.map((page, i) => (
                         <Box key={i} sx={{ m: "1rem", p: "1rem" }}>
                             <Button
+                                variant={page.variant}
                                 component={Link}
                                 to={page.link}
                                 sx={{ mx: "0.1rem" }}
