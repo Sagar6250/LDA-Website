@@ -1,5 +1,5 @@
 import { Grid, TextField } from "@mui/material";
-import FormWrapper from "../../../../layout/FormWrapper";
+import FormWrapper from "../../../../components/layout/FormWrapper";
 import React from "react";
 import { IMaskInput } from "react-imask";
 import PropTypes from "prop-types";

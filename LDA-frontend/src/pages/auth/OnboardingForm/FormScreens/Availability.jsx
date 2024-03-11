@@ -8,7 +8,7 @@ import {
     Grid,
     FormControl,
 } from "@mui/material";
-import FormWrapper from "../../../../layout/FormWrapper";
+import FormWrapper from "../../../../components/layout/FormWrapper";
 
 const daysOfWeek = [
     "Monday",

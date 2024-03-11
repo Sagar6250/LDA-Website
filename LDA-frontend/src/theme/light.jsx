@@ -1,4 +1,4 @@
-import { createTheme, outlinedInputClasses } from "@mui/material";
+import { createTheme, hexToRgb, outlinedInputClasses } from "@mui/material";
 
 const theme = createTheme({
     palette: {
@@ -96,6 +96,15 @@ theme.components = {
                 [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
                     borderColor: theme.palette.secondary.main,
                 },
+            },
+        },
+    },
+    MuiAppBar: {
+        styleOverrides: {
+            root: {
+                background: theme.palette.quinary.main,
+                color: theme.palette.secondary.dark,
+                boxShadow: `0px 0px 0px `,
             },
         },
     },

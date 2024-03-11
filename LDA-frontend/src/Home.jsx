@@ -1,13 +1,16 @@
 import { Box, Link } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import RootContainer from "./components/layout/RootContainer";
 
 const Home = () => {
     return (
-        <Box>
-            <Link component={NavLink} to="/onboarding">
-                Onboarding
-            </Link>
-        </Box>
+        <>
+            <RootContainer>
+                {/* <Link component={NavLink} to="/onboarding">
+                    Onboarding
+                </Link> */}
+            </RootContainer>
+        </>
     );
 };
 
