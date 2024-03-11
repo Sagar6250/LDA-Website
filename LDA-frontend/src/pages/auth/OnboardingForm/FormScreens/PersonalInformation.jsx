@@ -1,4 +1,4 @@
-import { Grid, TextField } from "@mui/material";
+import { Grid, TextField, MenuItem, Autocomplete } from "@mui/material";
 import FormWrapper from "../../../../components/layout/FormWrapper";
 import React from "react";
 import { IMaskInput } from "react-imask";
@@ -27,6 +27,34 @@ TextMaskCustom.propTypes = {
     onChange: PropTypes.func.isRequired,
 };
 
+const NumericMaskCustom = React.forwardRef (function NumericMaskCustom(props,ref)
+{
+    const {onChange, ...other} =props; 
+    return(
+        <IMaskInput
+            {...other}
+            mask= "######"
+            definitions={
+                {
+                    "#": /[0-9]/, 
+                }
+            }
+            placeholder="FORMAT: 555555"
+            inputRef= {ref}
+            onAccept ={
+                (value)=> 
+                onChange({target: {name: props.name, value}})
+            }
+            overwrite
+        />
+    );
+}
+);
+NumericMaskCustom.propTypes= {
+    name: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+};
+
 const PersonalInformation = ({
     fullName,
     phoneNumber,
@@ -39,6 +67,44 @@ const PersonalInformation = ({
     country,
     updateFields,
 }) => {
+    const statesList= [
+        "Andaman and Nicobar Islands",
+        "Andhra Pradesh",
+        "Arunachal Pradesh",
+        "Assam",
+        "Bihar",
+        "Chandigarh", 
+        "Chattigarh",
+        "Dadra and Nagar Haveli and Daman & Diu",
+        "Delhi",
+        "Goa",
+        "Gujarat",
+        "Haryana",
+        "Himachal Pradesh",
+        "Jammu and Kashmir",
+        "Jharkhand", 
+        "Karnataka", 
+        "Kerala",
+        "Ladakh",
+        "Lakshadweep", 
+        "Madhya Pradesh",
+        "Maharashtra", 
+        "Manipur",
+        "Meghalaya", 
+        "Mizoram", 
+        "Nagaland", 
+        "Odisha", 
+        "Puducherry", 
+        "Punjab", 
+        "Rajastan",
+        "Sikkim", 
+        "Tamil Nadu",
+        "Telangana",
+        "Tripura",
+        "Uttarakhand",
+        "Uttar Pradesh",
+        "West Bengal", 
+    ]; 
     return (
         <FormWrapper title={"Personal Information"}>
             <Grid item xs={16}>
@@ -62,6 +128,7 @@ const PersonalInformation = ({
                     InputProps={{
                         inputComponent: TextMaskCustom,
                     }}
+                    inputProps={{minLength: 10,}}
                     value={phoneNumber}
                     onChange={(e) =>
                         updateFields({ phoneNumber: e.target.value })
@@ -121,21 +188,43 @@ const PersonalInformation = ({
                     value={city}
                     onChange={(e) => updateFields({ city: e.target.value })}
                     required
-                    // placeholder=""
                     variant="outlined"
                 />
             </Grid>
             <Grid item xs={16} sm={6}>
-                <TextField
+                <Autocomplete
                     id="state"
-                    label="State"
+                    //label="State"
+                    //select
+                    options= {statesList}
                     value={state}
-                    onChange={(e) => updateFields({ state: e.target.value })}
-                    fullWidth
-                    required
-                    // placeholder=""
-                    variant="outlined"
-                />
+                    onChange={(event, newValue) => updateFields({ state: newValue })}
+                    //fullWidth
+                    //required
+                    //variant="outlined"    
+                    //SelectProps={{
+                        //MenuProps: {
+                           // PaperProps: {
+                             //   style: {
+                               //     backgroundColor: 'white', // Set background color to white
+                                //},
+                            //},
+                       // },
+                   // }}
+                   renderInput={(params)=> (
+                    <TextField
+                        {...params}
+                        label="State"
+                        variant= "outlined"
+                        required
+                        fullWidth />
+                   )}
+                >
+                {statesList.map((state)=> (
+                    <MenuItem key={state} value={state}>
+                    {state}
+                    </MenuItem>                ))}
+            </Autocomplete>
             </Grid>
             <Grid item xs={16} sm={6}>
                 <TextField
@@ -144,6 +233,8 @@ const PersonalInformation = ({
                     variant="outlined"
                     value={zipcode}
                     onChange={(e) => updateFields({ zipcode: e.target.value })}
+                    InputProps= {{inputComponent:NumericMaskCustom,}}
+                    inputProps= {{minLength: 6,}}
                     fullWidth
                     required
                 />

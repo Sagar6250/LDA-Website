@@ -1,7 +1,12 @@
 import React from "react";
-
+import RootContainer from "../../../components/layout/RootContainer";
 const LoginScreen = () => {
-    return <div>LoginScreen</div>;
-};
+    return (
+    <RootContainer>
+    {   
+    }
+    </RootContainer>
+    );
+}
 
 export default LoginScreen;
