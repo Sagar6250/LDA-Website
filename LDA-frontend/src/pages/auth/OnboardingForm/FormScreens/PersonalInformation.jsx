@@ -1,4 +1,4 @@
-import { Grid, TextField, MenuItem, Autocomplete } from "@mui/material";
+import { Grid, TextField, MenuItem, Autocomplete, Paper } from "@mui/material";
 import FormWrapper from "../../../../components/layout/FormWrapper";
 import React from "react";
 import { IMaskInput } from "react-imask";
@@ -13,6 +13,7 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
             definitions={{
                 "#": /[0-9]/,
             }}
+            placeholder= "Enter Contact Number"
             inputRef={ref}
             onAccept={(value) =>
                 onChange({ target: { name: props.name, value } })
@@ -147,7 +148,7 @@ const PersonalInformation = ({
                     onChange={(e) =>
                         updateFields({ emailAddress: e.target.value })
                     }
-                    // placeholder="Enter your email address here"
+                    placeholder="Enter your email address here"
                     fullWidth
                     required
                     variant="outlined"
@@ -211,6 +212,7 @@ const PersonalInformation = ({
                             //},
                        // },
                    // }}
+                   limitTags= {5}
                    renderInput={(params)=> (
                     <TextField
                         {...params}
@@ -219,11 +221,15 @@ const PersonalInformation = ({
                         required
                         fullWidth />
                    )}
+                   ListboxComponent={(props) => (
+                    <Paper {...props} style={{ backgroundColor: 'white' }} />
+                )}
                 >
                 {statesList.map((state)=> (
                     <MenuItem key={state} value={state}>
                     {state}
                     </MenuItem>                ))}
+                
             </Autocomplete>
             </Grid>
             <Grid item xs={16} sm={6}>
