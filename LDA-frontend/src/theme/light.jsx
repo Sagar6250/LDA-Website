@@ -132,7 +132,7 @@ theme.components = {
             root: {
                 background: theme.palette.quinary.main,
                 color: theme.palette.secondary.dark,
-                boxShadow: `0px 0px 0px `,
+                // boxShadow: `0px 0px 0px `,
             },
         },
     },
