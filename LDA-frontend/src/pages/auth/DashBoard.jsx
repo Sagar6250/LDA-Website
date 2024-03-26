@@ -12,7 +12,8 @@ import {
     Typography,
 } from "@mui/material";
 
-
+import CustomBox from "../../components/layout/icons/CustomBox"
+import Threebox from "../../components/layout/icons/Threebox";
 
 const DashBoard = () => {
     return (
@@ -49,6 +50,22 @@ const DashBoard = () => {
                     </List>
                 </Box>
             </Drawer>
+            <Box sx={{ ml: '20%', mt: 5 }}>
+                <Threebox />
+            </Box>
+            <Box
+                sx={{
+                    display:'flex',
+                    ml:'20%',
+                    mt:5,
+                    gap:'10%'
+                }}
+            >
+                <CustomBox />
+                <CustomBox />
+                <CustomBox />
+                <CustomBox />
+            </Box>
             <Typography>Dashborad</Typography>
         </RootContainer>
     );
