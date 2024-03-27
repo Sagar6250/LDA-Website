@@ -17,6 +17,7 @@ export default function CustomBox() {
       <Box
         sx={{
           display: 'flex',
+          position: "relative",
           alignItems: 'center',
           width: 200,
           height: 100,
@@ -28,7 +29,11 @@ export default function CustomBox() {
           },
         }}
       >
+        <AccessTimeIcon fontSize="large" sx={{ position: "absolute", top: '-15px', right: -20, fontSize: '6em', opacity: 0.2 }} /> 
+        <div >
         <AccessTimeIcon fontSize="large" sx={{ marginLeft: '10px' }} /> 
+
+        </div>
       </Box>
     </ThemeProvider>
   );
