@@ -1,6 +1,6 @@
 import React from "react";
 import RootContainer from "../../components/layout/RootContainer";
-import SigninPaper from "../../components/layout/SigninPaper";
+import coverImage from "../../assets/coverImage.png"
 import {
     TextField,
     Grid,
@@ -9,12 +9,15 @@ import {
     Button,
     ButtonBase,
     ThemeProvider,
+    Box,
     Stack,
     Link,
 } from "@mui/material";
 import "../../index.css";
 import { Link as RouterLink } from "react-router-dom";
 import FormWrapper from "../../components/layout/FormWrapper";
+import theme from "../../theme/light";
+
 
 const LoginScreen = () => {
     return (
@@ -89,9 +92,35 @@ const LoginScreen = () => {
                             </FormWrapper>
                         </Paper>
                     </Grid>
-                    <Grid item sm={6} sx={{ p: 4 }}>
-                        pic
-                    </Grid>
+                    <Grid item sm={6} sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', paddingRight: '20px', paddingBottom: '0px' }}>
+                    <Typography
+                        variant="h3"
+                        sx={{textAlign: 'left',
+                    }}
+                        style={{
+                                position: 'absolute',
+                                bottom: "55%",
+                                right:"25%"
+                        }}
+    >
+        Fueling your <span style={{color: theme.palette.primary.main}} >logistics</span> <br/>chain!
+    </Typography>
+                    <Box sx={{ position: 'relative', width: '75%', height: '75%' }}>
+        
+                        <img
+                            src={coverImage}
+                            alt="Example"
+                            style={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'contain',
+                                position: 'absolute',
+                                bottom: 0,
+                                right: 0,
+                            }}
+                        />
+                    </Box>
+                </Grid>
                 </Grid>
             }
         </RootContainer>
