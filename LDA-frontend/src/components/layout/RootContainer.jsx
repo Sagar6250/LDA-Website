@@ -8,7 +8,10 @@ const RootContainer = ({ children, onlyText }) => {
             <Toolbar
                 variant="dense"
                 disableGutters
-                sx={{ minHeight: 117, height: 117 }}
+                sx={{
+                    minHeight: onlyText ? 117 : 147,
+                    height: onlyText ? 117 : 147,
+                }}
             />
             <Container maxWidth="xl" disableGutters>
                 {children}
