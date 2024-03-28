@@ -1,6 +1,5 @@
 import React from "react";
 import RootContainer from "../../components/layout/RootContainer";
-import SigninPaper from "../../components/layout/SigninPaper";
 import {
     TextField,
     Grid,
