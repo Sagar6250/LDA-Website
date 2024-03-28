@@ -14,6 +14,7 @@ import {
 import "../../index.css";
 import { Link as RouterLink } from "react-router-dom";
 import FormWrapper from "../../components/layout/FormWrapper";
+import theme from "../../theme/light";
 
 const LoginScreen = () => {
     return (
@@ -26,13 +27,14 @@ const LoginScreen = () => {
                                 title={
                                     <div>
                                         Welcome{" "}
-                                        <Typography
-                                            display={"inline"}
-                                            variant="h2"
-                                            color="primary"
+                                        <span
+                                            style={{
+                                                color: theme.palette.primary
+                                                    .main,
+                                            }}
                                         >
                                             Back
-                                        </Typography>
+                                        </span>
                                     </div>
                                 }
                                 sx={{ textAlign: "center" }}
