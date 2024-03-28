@@ -1,6 +1,6 @@
 import React from "react";
 import RootContainer from "../../components/layout/RootContainer";
- import {
+import {
     Box,
     Divider,
     Drawer,
@@ -12,8 +12,8 @@ import RootContainer from "../../components/layout/RootContainer";
     Typography,
 } from "@mui/material";
 
-import CustomBox from "../../components/layout/icons/CustomBox"
-import Threebox from "../../components/layout/icons/Threebox";
+import CustomBox from "../../components/icons/CustomBox";
+import Threebox from "../../components/icons/Threebox";
 
 const DashBoard = () => {
     return (
@@ -50,15 +50,15 @@ const DashBoard = () => {
                     </List>
                 </Box>
             </Drawer>
-            <Box sx={{ ml: '20%', mt: 5 }}>
+            <Box sx={{ ml: "20%", mt: 5 }}>
                 <Threebox />
             </Box>
             <Box
                 sx={{
-                    display:'flex',
-                    ml:'20%',
-                    mt:5,
-                    gap:'10%'
+                    display: "flex",
+                    ml: "20%",
+                    mt: 5,
+                    gap: "10%",
                 }}
             >
                 <CustomBox />
