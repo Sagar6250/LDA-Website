@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import ArrowUpwardSharpIcon from "@mui/icons-material/ArrowUpwardSharp";
 import ArrowDownwardSharpIcon from "@mui/icons-material/ArrowDownwardSharp";
+import DashboardBox from "../../components/DashboardBox";
 
 const statistics = [
     {
@@ -45,7 +46,25 @@ const statistics = [
     },
 ];
 
-import CustomBox from "../../components/icons/CustomBox";
+const pendingList = [
+    {
+        number: "10",
+        name: "Pending",
+    },
+    {
+        number: "13",
+        name: "Assigned",
+    },
+
+    {
+        number: "23",
+        name: "Picked Up",
+    },
+    {
+        number: "21",
+        name: "Delivered",
+    },
+];
 
 const DashBoard = () => {
     return (
@@ -53,10 +72,10 @@ const DashBoard = () => {
             <Drawer
                 variant="permanent"
                 sx={{
-                    width: "20%",
+                    minWidth: "20%",
                     flexShrink: 0,
                     ["& .MuiDrawer-paper"]: {
-                        width: "20%",
+                        minWidth: "20%",
                         boxSizing: "border-box",
                         // position: "relative",
                     },
@@ -82,7 +101,7 @@ const DashBoard = () => {
                     </List>
                 </Box>
             </Drawer>
-            <Box sx={{ ml: "20%", mt: 5 }}>
+            <Box sx={{ ml: "20%" }}>
                 <Stack
                     direction="row"
                     justifyContent="space-around"
@@ -103,6 +122,7 @@ const DashBoard = () => {
                     sx={{
                         border: "2px solid #FFB55C",
                         borderRadius: "10px",
+                        mb: 5,
                     }}
                 >
                     {statistics.map((stat, index) => (
@@ -131,21 +151,20 @@ const DashBoard = () => {
                         </Box>
                     ))}
                 </Stack>
+                <Stack
+                    direction="row"
+                    justifyContent="space-between"
+                    alignItems="center"
+                >
+                    {pendingList.map((information, index) => (
+                        <DashboardBox
+                            key={index}
+                            number={information.number}
+                            body={information.name}
+                        />
+                    ))}
+                </Stack>
             </Box>
-            <Box
-                sx={{
-                    display: "flex",
-                    ml: "20%",
-                    mt: 5,
-                    gap: "10%",
-                }}
-            >
-                <CustomBox />
-                <CustomBox />
-                <CustomBox />
-                <CustomBox />
-            </Box>
-            <Typography>Dashborad</Typography>
         </RootContainer>
     );
 };
