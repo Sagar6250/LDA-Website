@@ -24,7 +24,7 @@ export default function DashboardBox({ number, body }) {
                 fontSize="large"
                 sx={{
                     position: "absolute",
-                    top: 40,
+                    top: Math.floor(Math.random() * 40),
                     right: -20,
                     fontSize: "6rem",
                     opacity: 0.2,

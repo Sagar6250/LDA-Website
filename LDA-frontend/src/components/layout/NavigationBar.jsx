@@ -6,7 +6,7 @@ import styled from "@emotion/styled";
 
 const pagesArr = [
     {
-        title: "Sign-in",
+        title: "Sign-up",
         link: "/onboarding",
         variant: "text",
     },

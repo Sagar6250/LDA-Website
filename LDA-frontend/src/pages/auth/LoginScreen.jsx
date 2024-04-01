@@ -1,6 +1,6 @@
 import React from "react";
 import RootContainer from "../../components/layout/RootContainer";
-import coverImage from "../../assets/coverImage.png"
+import coverImage from "../../assets/coverImage.png";
 import {
     TextField,
     Grid,
@@ -71,7 +71,12 @@ const LoginScreen = () => {
                                     </Stack>
                                 </Grid>
                                 <Grid item xs={10} sx={{ mx: 7, mt: 5, mb: 2 }}>
-                                    <Button variant="contained" fullWidth>
+                                    <Button
+                                        component={RouterLink}
+                                        to={"/dashboard"}
+                                        variant="contained"
+                                        fullWidth
+                                    >
                                         Sign in
                                     </Button>
                                 </Grid>
@@ -92,35 +97,54 @@ const LoginScreen = () => {
                             </FormWrapper>
                         </Paper>
                     </Grid>
-                    <Grid item sm={6} sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', paddingRight: '20px', paddingBottom: '0px' }}>
-                    <Typography
-                        variant="h3"
-                        sx={{textAlign: 'left',
-                    }}
-                        style={{
-                                position: 'absolute',
-                                bottom: "55%",
-                                right:"25%"
+                    <Grid
+                        item
+                        sm={6}
+                        sx={{
+                            display: "flex",
+                            justifyContent: "flex-end",
+                            alignItems: "flex-end",
+                            paddingRight: "20px",
+                            paddingBottom: "0px",
                         }}
-    >
-        Fueling your <span style={{color: theme.palette.primary.main}} >logistics</span> <br/>chain!
-    </Typography>
-                    <Box sx={{ position: 'relative', width: '75%', height: '75%' }}>
-        
-                        <img
-                            src={coverImage}
-                            alt="Example"
+                    >
+                        <Typography
+                            variant="h3"
+                            sx={{ textAlign: "left" }}
                             style={{
-                                width: '100%',
-                                height: '100%',
-                                objectFit: 'contain',
-                                position: 'absolute',
-                                bottom: 0,
-                                right: 0,
+                                position: "absolute",
+                                bottom: "55%",
+                                right: "25%",
                             }}
-                        />
-                    </Box>
-                </Grid>
+                        >
+                            Fueling your{" "}
+                            <span style={{ color: theme.palette.primary.main }}>
+                                logistics
+                            </span>{" "}
+                            <br />
+                            chain!
+                        </Typography>
+                        <Box
+                            sx={{
+                                position: "relative",
+                                width: "75%",
+                                height: "75%",
+                            }}
+                        >
+                            <img
+                                src={coverImage}
+                                alt="Example"
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "contain",
+                                    position: "absolute",
+                                    bottom: 0,
+                                    right: 0,
+                                }}
+                            />
+                        </Box>
+                    </Grid>
                 </Grid>
             }
         </RootContainer>

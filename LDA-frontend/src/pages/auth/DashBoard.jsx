@@ -2,12 +2,14 @@ import React from "react";
 import RootContainer from "../../components/layout/RootContainer";
 import {
     Box,
+    Button,
     Divider,
     Drawer,
     List,
     ListItem,
     ListItemButton,
     ListItemText,
+    ListSubheader,
     Stack,
     Toolbar,
     Typography,
@@ -15,6 +17,7 @@ import {
 import ArrowUpwardSharpIcon from "@mui/icons-material/ArrowUpwardSharp";
 import ArrowDownwardSharpIcon from "@mui/icons-material/ArrowDownwardSharp";
 import DashboardBox from "../../components/DashboardBox";
+import theme from "../../theme/light";
 
 const statistics = [
     {
@@ -72,11 +75,14 @@ const DashBoard = () => {
             <Drawer
                 variant="permanent"
                 sx={{
-                    minWidth: "20%",
+                    minWidth: "15%",
                     flexShrink: 0,
                     ["& .MuiDrawer-paper"]: {
-                        minWidth: "20%",
+                        minWidth: "15%",
                         boxSizing: "border-box",
+                        bgcolor: theme.palette.quinary.main,
+                        // justifyContent: "center",
+                        // alignItems: "center",
                         // position: "relative",
                     },
                 }}
@@ -87,13 +93,38 @@ const DashBoard = () => {
                     disableGutters
                     sx={{ minHeight: 117, height: 117 }}
                 />
-                <Box sx={{ overflow: "auto" }}>
+                <Box
+                    sx={{
+                        overflow: "auto",
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}
+                >
                     <List>
+                        <ListSubheader
+                            sx={{
+                                bgcolor: theme.palette.primary.main + "25",
+                                mx: 4,
+                                my: 2,
+                                p: 3,
+                                borderRadius: "10px",
+                            }}
+                            color="inherit"
+                            alignItems="center"
+                        >
+                            <Typography variant="body1">DashBoard</Typography>
+                        </ListSubheader>
                         {["Inbox", "Starred", "Send email", "Drafts"].map(
                             (text, index) => (
                                 <ListItem key={text} disablePadding>
                                     <ListItemButton>
-                                        <ListItemText primary={text} />
+                                        <ListItemText
+                                            sx={{
+                                                ml: "30%",
+                                                my: 1,
+                                            }}
+                                            primary={text}
+                                        />
                                     </ListItemButton>
                                 </ListItem>
                             )
@@ -101,7 +132,7 @@ const DashBoard = () => {
                     </List>
                 </Box>
             </Drawer>
-            <Box sx={{ ml: "20%" }}>
+            <Box sx={{ ml: "15%" }}>
                 <Stack
                     direction="row"
                     justifyContent="space-around"
